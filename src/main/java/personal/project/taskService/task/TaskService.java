@@ -13,7 +13,10 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> findAll() {
-        return this.taskRepository.findAll();
+    public List<Task> findAll(CreateTaskDto createTaskDto) {
+
+        return taskRepository.findAll();
     }
+
+
 }

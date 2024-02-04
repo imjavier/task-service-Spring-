@@ -2,6 +2,7 @@ package personal.project.taskService.task;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import personal.project.taskService.user.User_data;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -18,7 +19,9 @@ public class Task {
     private String description;
     @CreationTimestamp
     private LocalDate creationDate;
-    private UUID userID;
+    @ManyToOne
+    @JoinColumn(name="user_ID")
+    private User_data user_data;
 
 
 }

@@ -9,18 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController()
-@RequestMapping("api")
+@RequestMapping("api/task")
 public class TaskController {
     private  final  TaskService taskService;
     @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-    @GetMapping("/task")
-    public String findAll(@Validated @RequestBody CreateTaskDto createTaskDto){
-
-        System.out.println(createTaskDto.toString());
-        return null;
+    @GetMapping()
+    public List<Task> findAll(@Validated @RequestBody CreateTaskDto createTaskDto){
+        return taskService.findAll(createTaskDto);
     }
 
 
