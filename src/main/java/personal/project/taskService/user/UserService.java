@@ -21,8 +21,8 @@ public class UserService {
 
     public String create(CreateUserDto createUserDto){
 
-        Boolean objeto = userRepository.existsByUsername(createUserDto.username);
-        if (!objeto){
+        Boolean userRegistered = userRepository.existsByUsername(createUserDto.username);
+        if (!userRegistered){
 
             User_data user = new User_data();
             user.setUsername(createUserDto.username);
@@ -32,14 +32,11 @@ public class UserService {
             return "User '" + userRepository.save(user).getUsername() + "' created";
 
         }else {
-
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Username is already registered");
-
         }
     }
-
-
     public String login(LoginUserDto loginUserDto){
+
         return null;
     }
 }
