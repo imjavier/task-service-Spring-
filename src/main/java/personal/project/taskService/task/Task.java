@@ -1,6 +1,7 @@
 package personal.project.taskService.task;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.annotations.CreationTimestamp;
 import personal.project.taskService.user.User_data;
 
@@ -14,13 +15,20 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "taskname", nullable = false)
     private String taskname;
+    @Column(name = "status", nullable = false)
     private String status;
+    @Column(name = "description", nullable = false)
     private String description;
-    @CreationTimestamp
+    @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
+    @Column(name = "user_ID", nullable = false)
+    private UUID user_ID;
+
+
     @ManyToOne
-    @JoinColumn(name="user_ID")
+    @JoinColumn(name="user_ID",referencedColumnName = "user_ID",insertable = false,updatable = false)
     private User_data user_data;
 
     public UUID getId() {
@@ -63,11 +71,11 @@ public class Task {
         this.creationDate = creationDate;
     }
 
-    public User_data getUser_data() {
-        return user_data;
+    public UUID getUser_ID() {
+        return user_ID;
     }
 
-    public void setUser_data(User_data user_data) {
-        this.user_data = user_data;
+    public void setUser_ID(UUID user_ID) {
+        this.user_ID = user_ID;
     }
 }

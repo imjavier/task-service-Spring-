@@ -17,14 +17,18 @@ public class TaskService {
     }
     public String create(CreateTaskDto createTaskDto) {
 
-        Task taskData = new Task();
-        taskData.setId(UUID.randomUUID());
-        taskData.setTaskname(createTaskDto.taskName);
-        taskData.setStatus(createTaskDto.status);
-        taskData.setDescription(createTaskDto.description);
-        taskData.getCreationDate(LocalDate.now());
+        Task task_data = new Task();
+        task_data.setId(UUID.randomUUID());
+        task_data.setTaskname(createTaskDto.taskname);
+        task_data.setStatus(createTaskDto.status);
+        task_data.setDescription(createTaskDto.description);
+        task_data.setCreationDate(LocalDate.now());
+        task_data.setUser_ID(createTaskDto.user_ID);
+        return "Task '" + taskRepository.save(task_data).getTaskname() + "' created";
+    }
 
-        return "Task '" + taskRepository.save(taskData).getTaskname() + "' created";
+    public String update(UpdateTaskDto updateTaskDto){
+        return "";
     }
     public List<Task> findAll(CreateTaskDto createTaskDto) {
 
