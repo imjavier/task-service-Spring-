@@ -17,8 +17,8 @@ public class TaskController {
         this.taskService = taskService;
     }
     @GetMapping()
-    public List<Task> findAll(@Validated @RequestBody CreateTaskDto createTaskDto ){
-        return taskService.findAll(createTaskDto);
+    public List<Task> findAll(@Validated @RequestBody GetTaskDto user_id){
+        return taskService.findAll(user_id.getUser_id());
     }
     @PostMapping()
     public String create(@Validated @RequestBody CreateTaskDto createTaskDto){

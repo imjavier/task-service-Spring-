@@ -30,9 +30,9 @@ public class TaskService {
     public String update(UpdateTaskDto updateTaskDto){
         return "";
     }
-    public List<Task> findAll(CreateTaskDto createTaskDto) {
+    public List<Task> findAll(UUID user_id) {
 
-        return taskRepository.findAll();
+        return taskRepository.findByUserID(user_id);
     }
 
 

@@ -24,7 +24,7 @@ public class Task {
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
     @Column(name = "user_ID", nullable = false)
-    private UUID user_ID;
+    private UUID userID;
 
 
     @ManyToOne
@@ -72,10 +72,10 @@ public class Task {
     }
 
     public UUID getUser_ID() {
-        return user_ID;
+        return userID;
     }
 
     public void setUser_ID(UUID user_ID) {
-        this.user_ID = user_ID;
+        this.userID = user_ID;
     }
 }
