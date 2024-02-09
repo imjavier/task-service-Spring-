@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import personal.project.taskService.user.role.ERole;
+import personal.project.taskService.user.role.Role;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,12 +25,22 @@ public class UserService {
 
         Boolean userRegistered = userRepository.existsByUsername(createUserDto.username);
         if (!userRegistered){
+            Role role = Role.builder()
+                    .role_ID(UUID.randomUUID())
+                    .name(ERole.valueOf(createUserDto.role))
+                    .build();
 
-            User_data user = new User_data();
-            user.setUsername(createUserDto.username);
-            user.setPassword((createUserDto.password));
-            user.setUser_ID(UUID.randomUUID());
-            user.setCreationDate(LocalDate.now());
+            User_data user = User_data.builder()
+                    .user_ID(UUID.randomUUID())
+                    .username(createUserDto.username)
+                    .password(createUserDto.password)
+                    .creationDate(LocalDate.now())
+                    .role(role)
+                    .build();
+
+
+
+
             return "User '" + userRepository.save(user).getUsername() + "' created";
 
         }else {

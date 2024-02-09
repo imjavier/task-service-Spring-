@@ -2,12 +2,19 @@ package personal.project.taskService.task;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import personal.project.taskService.user.User_data;
 
 import java.time.LocalDate;
 import java.util.UUID;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "task")
 public class Task {
@@ -31,51 +38,5 @@ public class Task {
     @JoinColumn(name="user_ID",referencedColumnName = "user_ID",insertable = false,updatable = false)
     private User_data user_data;
 
-    public UUID getId() {
-        return id;
-    }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTaskname() {
-        return taskname;
-    }
-
-    public void setTaskname(String taskname) {
-        this.taskname = taskname;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getCreationDate(LocalDate now) {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public UUID getUser_ID() {
-        return userID;
-    }
-
-    public void setUser_ID(UUID user_ID) {
-        this.userID = user_ID;
-    }
 }

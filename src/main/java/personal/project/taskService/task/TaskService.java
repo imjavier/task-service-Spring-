@@ -17,14 +17,16 @@ public class TaskService {
     }
     public String create(CreateTaskDto createTaskDto) {
 
-        Task task_data = new Task();
-        task_data.setId(UUID.randomUUID());
-        task_data.setTaskname(createTaskDto.taskname);
-        task_data.setStatus(createTaskDto.status);
-        task_data.setDescription(createTaskDto.description);
-        task_data.setCreationDate(LocalDate.now());
-        task_data.setUser_ID(createTaskDto.user_ID);
+        Task task_data = Task.builder()
+                .id(UUID.randomUUID())
+                .taskname(createTaskDto.taskname)
+                .status(createTaskDto.status)
+                .description(createTaskDto.description)
+                .creationDate(LocalDate.now())
+                .build();
+
         return "Task '" + taskRepository.save(task_data).getTaskname() + "' created";
+
     }
 
     public String update(UpdateTaskDto updateTaskDto){
